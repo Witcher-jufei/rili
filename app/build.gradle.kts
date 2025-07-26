@@ -97,11 +97,12 @@ android {
 }
 
 dependencies {
-    implementation(libs.simple.mobile.tools.commons)
+//    implementation(libs.simple.mobile.tools.commons)
     implementation(libs.androidx.multidex)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.androidx.print)
     implementation(libs.bundles.room)
+    implementation(project(":simple-commons"))
     ksp(libs.androidx.room.compiler)
 }

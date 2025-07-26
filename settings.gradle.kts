@@ -27,4 +27,4 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-include(":app")
+include(":app",":simple-commons")
