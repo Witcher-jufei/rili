@@ -28,3 +28,4 @@ dependencyResolutionManagement {
     }
 }
 include(":app",":simple-commons")
+project(":simple-commons").projectDir = File(rootDir, "simple-commons")

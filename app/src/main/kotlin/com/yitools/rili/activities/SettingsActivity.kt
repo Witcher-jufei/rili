@@ -6,8 +6,10 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.media.AudioManager
 import android.media.RingtoneManager
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.yitools.rili.R
@@ -30,6 +32,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import kotlin.system.exitProcess
+import com.simplemobiletools.commons.extensions.beVisibleIf
 
 class SettingsActivity : SimpleActivity() {
     private val GET_RINGTONE_URI = 1
@@ -179,6 +182,7 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setupCustomizeNotifications() {
         binding.settingsCustomizeNotificationsHolder.beVisibleIf(isOreoPlus())
         binding.settingsCustomizeNotificationsHolder.setOnClickListener {
@@ -196,6 +200,7 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun setupLanguage() = binding.apply {
         settingsLanguage.text = Locale.getDefault().displayLanguage
         settingsLanguageHolder.beVisibleIf(isTiramisuPlus())
@@ -869,7 +874,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun setupEnableAutomaticBackups() = binding.apply {
         settingsBackupsLabel.beVisibleIf(isRPlus())
-        settingsBackupsDivider.beVisibleIf(isRPlus())
+        settingsBackupsDivider.root.beVisibleIf(isRPlus())
         settingsEnableAutomaticBackupsHolder.beVisibleIf(isRPlus())
         settingsEnableAutomaticBackups.isChecked = config.autoBackup
         settingsEnableAutomaticBackupsHolder.setOnClickListener {
